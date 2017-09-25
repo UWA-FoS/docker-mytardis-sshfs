@@ -1,0 +1,3 @@
+[submodule "mytardisfs"]
+	path = mytardisfs
+	url = https://github.com/monash-merc/mytardisfs.git
