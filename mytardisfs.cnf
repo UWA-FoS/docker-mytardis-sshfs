@@ -1,7 +1,7 @@
 [mytardisfs]
-mytardis_install_dir = /opt/mytardis/current
+mytardis_install_dir = /srv/mytardis
 mytardis_url = http://mytardis-uat.cmca.uwa.edu.au
-auth_provider = localdb
+auth_provider = ldap
 experiments_list_cache_time_seconds = 30
 experiment_datasets_cache_time_seconds = 30
 dataset_datafiles_cache_time_seconds = 30

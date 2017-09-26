@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM uwaedu/mytardis_app
 
 EXPOSE 22
 
@@ -18,6 +18,7 @@ RUN mkdir -p /var/run/sshd
 RUN apt-get update && apt-get -y install \
   fuse \
   libfuse-dev \
+  pkg-config \
   python-fdsend \
   && apt-get clean
 
@@ -27,8 +28,11 @@ RUN python -m pip install -U --no-cache-dir \
   python-dateutil \
   requests
 
+COPY ./mytardisfs/ /tmp/mytardisfs
+RUN wd=$(cwd); cd /tmp/mytardisfs/ && python setup.py install && cd ${cwd} && rm -rf /tmp/mytardisfs/
 COPY ./mytardisfs.cnf /etc/mytardisfs.cnf
-COPY ./mytardisfs/mytardisfs/ /opt/mytardisfs/
+# Suppress run error massage looking for this directory
+RUN mkdir -p /srv/mytardis/eggs
 
 ENV PYTHONPATH=/usr/lib/python2.7/dist-packages/
 
@@ -37,5 +41,6 @@ RUN apt-get update && apt-get -y install \
   sudo \
   && apt-get clean
 COPY ./sudoers_mytardis /etc/sudoers.d/mytardis
+RUN useradd mytardis
 
 ENTRYPOINT ["/usr/sbin/sshd","-4","-D"]

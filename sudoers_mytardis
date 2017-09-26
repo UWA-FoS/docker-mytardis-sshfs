@@ -1,1 +1,1 @@
-ALL ALL=(mytardis:mytardis) NOPASSWD: /opt/mytardisfs/_myapikey, /opt/mytardisfs/_datafiledescriptord, /opt/mytardisfs/_datasetdatafiles, /opt/mytardisfs/_countexpdatasets
+ALL ALL=(mytardis:mytardis) NOPASSWD: /usr/local/bin/_myapikey, /usr/local/bin/_datafiledescriptord, /usr/local/bin/_datasetdatafiles, /usr/local/bin/_countexpdatasets
